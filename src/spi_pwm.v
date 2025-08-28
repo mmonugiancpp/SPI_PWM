@@ -41,12 +41,12 @@ module spi_pwm (
 );
 
     // RX buffer (updated by SPI slave)
-    reg [31:0] rx_buffer = 32'd0;
+    reg [31:0] rx_buffer;
 
     // PWM registers (latched from rx_buffer)
-    reg        pwm_enable = 1'b0;
-    reg [23:0] duty_cycle = 24'd0;
-    reg [31:0] frequency  = 32'd0;
+    reg        pwm_enable;
+    reg [23:0] duty_cycle;
+    reg [31:0] frequency;
 
     assign rx = rx_buffer;
 
