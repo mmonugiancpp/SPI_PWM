@@ -3,9 +3,9 @@
 
 # defaults
 SIM ?= icarus
-TOPLEVEL_LANG ?= verilog
+TOPLEVEL_LANG ?= VHDL
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = project.vhd pwm.vhd spi_pwm.vhd spi_slave.vhd
 
 ifneq ($(GATES),yes)
 
