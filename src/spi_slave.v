@@ -69,7 +69,7 @@ module spi_slave #(
     end
 
     // Receive and transmit logic
-    always @(posedge clk or negedge reset_n or posedge ss_n) begin
+    always @(posedge clk or negedge reset_n) begin
         if (!reset_n) begin
             rxBuffer <= {data_length{1'b0}};
             rx       <= {data_length{1'b0}};
