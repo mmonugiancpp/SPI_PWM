@@ -28,6 +28,10 @@ wire [31:0] counter_value,
             duty_cycle_2,
             duty_cycle_3;
 wire        enable_pwm;
+wire [7:0] rx_byte;
+wire rx_dv;
+wire [7:0] tx_byte;
+wire tx_dv;
 
   SPI_Slave #(.SPI_MODE(0)) spi_module
           (
