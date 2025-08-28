@@ -19,8 +19,8 @@ project:
   source_files:
     - "tt_um_pwm_block.v"
     - "pwm.v"
-    - "spi_pwm.v"
-    - "spi_slave.v"
+    - "MemoryManager.v"
+    - "SPI_Slave.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
@@ -51,9 +51,9 @@ pinout:
   uio[2]: ""
   uio[3]: ""
   uio[4]: "spi_clk"
-  uio[5]: "cs"
+  uio[5]: "miso"
   uio[6]: "mosi"
-  uio[7]: "miso"
+  uio[7]: "cs_n"
 
 # Do not change!
 yaml_version: 6
