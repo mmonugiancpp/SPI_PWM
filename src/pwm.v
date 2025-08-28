@@ -35,13 +35,13 @@ module PWM (
 );
 
     // Counters are 8-bit (0..255). Prescalers match 'frequency' width.
-    reg [7:0]  counter0 = 8'd0;
-    reg [7:0]  counter1 = 8'd0;
-    reg [7:0]  counter2 = 8'd0;
+    reg [7:0]  counter0;
+    reg [7:0]  counter1;
+    reg [7:0]  counter2;
 
-    reg [31:0] prescaler0 = 32'd0;
-    reg [31:0] prescaler1 = 32'd0;
-    reg [31:0] prescaler2 = 32'd0;
+    reg [31:0] prescaler0;
+    reg [31:0] prescaler1;
+    reg [31:0] prescaler2;
 
     localparam [7:0] COUNTER_VALUE = 8'd255;
 
