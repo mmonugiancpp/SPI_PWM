@@ -31,7 +31,7 @@ module spi_slave #(
     input  wire                  sclk,      // SPI clock
     input  wire                  ss_n,      // Slave select
     input  wire                  mosi,      // Master out, slave in
-    output reg                   miso,      // Master in, slave out
+    output wire                  miso,      // Master in, slave out
     input  wire                  rx_enable, // Enable to expose rxBuffer
     input  wire [data_length-1:0] tx,       // Data to transmit
     output reg  [data_length-1:0] rx,       // Data received
@@ -44,6 +44,9 @@ module spi_slave #(
     reg  [data_length:0] bit_counter;  // one-hot shift register
     reg  [data_length-1:0] rxBuffer;
     reg  [data_length-1:0] txBuffer;
+    reg miso_data;
+    reg miso_enable;
+    assign miso = miso_enable ? miso_data : 1'bZ;
 
     assign busy = ~ss_n;
     assign mode = cpol ^ cpha;
@@ -71,13 +74,15 @@ module spi_slave #(
             rxBuffer <= {data_length{1'b0}};
             rx       <= {data_length{1'b0}};
             txBuffer <= {data_length{1'b0}};
-            miso     <= 1'bZ;
+            miso_enable     <= 1'b0;
+            miso_data <= 1'b0;
         end else if (ss_n) begin
             // Latch outputs when SS released
             if (rx_enable)
                 rx <= rxBuffer;
             txBuffer <= tx;
-            miso <= 1'bZ;
+            miso_enable     <= 1'b0;
+            miso_data <= 1'b0;
         end else begin
             // --- Receive ---
             if (!cpha) begin
@@ -98,7 +103,8 @@ module spi_slave #(
             end
 
             // --- Drive MISO ---
-            miso <= txBuffer[data_length-1];
+            miso_enable     <= 1'b1;
+            miso_data <= txBuffer[data_length-1];
         end
     end
 
