@@ -81,6 +81,7 @@ module spi_slave #(
             if (rx_enable)
                 rx <= rxBuffer;
             txBuffer <= tx;
+            rxBuffer <= rxBuffer;
             miso_enable     <= 1'b0;
             miso_data <= 1'b0;
         end else begin
