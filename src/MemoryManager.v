@@ -145,7 +145,7 @@ always @(*) begin
             end
         end
         WRITE_CV : begin // we are writing the keys
-            next_state = WRITE_KEY;
+            next_state = WRITE_CV;
             next_counter = counter;
             should_write = 1'b0;
             if(o_RX_DV) begin // there is a valid byte to read
@@ -192,8 +192,8 @@ always @(*) begin
                 end
             end
         end
-        WRITE_DC1 : begin
-            next_state = WRITE_DC1;
+        WRITE_DC2 : begin
+            next_state = WRITE_DC2;
             next_counter = counter;
             should_write = 1'b0;
             if(o_RX_DV) begin // there is a valid byte to read
