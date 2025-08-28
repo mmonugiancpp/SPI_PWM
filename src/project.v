@@ -16,12 +16,32 @@ module tt_um_example (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+  assign uio_oe = 8'b10001111; // set data directions
+  assign uio_out[6:0] = 7'b000_0000; // all unused outputs are assigned
+  assign uo_out[7:3] = 5'b00000;
+
+  /*
+  entity spi_pwm is
+    port (
+        reset_n   : in  std_logic;                           -- Asynchronous active low reset
+        cpol      : in  std_logic;                           -- Clock polarity mode
+        cpha      : in  std_logic;                           -- Clock phase mode
+        sclk      : in  std_logic;                           -- Spi clk
+        ss_n      : in  std_logic;                           -- Slave select
+        mosi      : in  std_logic;                           -- Master out slave in
+        miso      : out std_logic;                           -- Master in slave out
+        rx_enable : in  std_logic;                           -- Enable signal to wire rxBuffer to outside
+        tx        : in  std_logic_vector((32 - 1) downto 0); -- Data to transmit
+        rx        : out std_logic_vector((32 - 1) downto 0); -- Data received
+        busy      : out std_logic := '0';                    -- Slave busy signal
+        pwm_clk   : in  std_logic;
+        pwm_out   : out std_logic_vector ((3 - 1) downto 0)
+    );*/
+
+  spi_pwm top_mod(.reset_n(rst_n), .cpol(1'b0), .cpha(1'b0), .sclk(uio_in[4]), .ss_n(uio_in[5]), .mosi(uio_in[6]),
+   .miso(uio_out[7]), .rx_enable(1'b1), .tx(32'd0), .rx(), .busy(), .pwm_clk(clk), .pwm_out(uo_out[2:0]));
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+  wire _unused = &{ena, ui_in, uio_in[3:0], uio_in[7], 1'b0};
 
 endmodule
