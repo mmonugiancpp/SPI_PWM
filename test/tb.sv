@@ -67,8 +67,8 @@ module tb ();
 
   SPI_Master 
     #(.SPI_MODE(SPI_MODE),
-    .CLKS_PER_HALF_BIT(2),
-    .NUM_SLAVES(1)) SPI_Master_UUT
+    .CLKS_PER_HALF_BIT(2)
+    ) SPI_Master_UUT
     (
       // Control/Data Signals,
       .i_Rst_L(rst_n),     // FPGA Reset
