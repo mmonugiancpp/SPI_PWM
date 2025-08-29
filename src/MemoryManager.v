@@ -150,13 +150,13 @@ always @(*) begin
             should_write = 1'b0;
             if(o_RX_DV) begin // there is a valid byte to read
                 should_write = 1'b1;
-                if(counter == 5'd31) begin // check counter value
-                    next_counter = 5'd0; // zero counter if end of array
+                if(counter == 2'd3) begin // check counter value
+                    next_counter = 2'd0; // zero counter if end of array
                     next_state = IDLE; // and go to idle
                 end
                 else begin
                     // we increment the counter otherwise
-                    next_counter = counter + 5'd1;
+                    next_counter = counter + 2'd1;
                 end
             end
         end
