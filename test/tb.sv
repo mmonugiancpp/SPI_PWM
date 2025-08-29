@@ -52,7 +52,7 @@ module tb ();
   assign w_SPI_MISO = uio_out[5];
 
   // Replace tt_um_example with your module name:
-  tt_um_example user_project (
+  tt_um_pwm_block user_project (
       .ui_in  (ui_in),    // Dedicated inputs
       .uo_out (uo_out),   // Dedicated outputs
       .uio_in (uio_in),   // IOs: Input path
