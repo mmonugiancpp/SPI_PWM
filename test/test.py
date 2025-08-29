@@ -18,11 +18,11 @@ async def test_send_multiple_payloads(dut):
     for _ in range(10):
         await RisingEdge(clk)
 
-    dut.r_Rst_L.value = 0
+    dut.rst_n.value = 0
     for _ in range(10):
         await RisingEdge(clk)
 
-    dut.r_Rst_L.value = 1
+    dut.rst_n.value = 1
     for _ in range(10):
         await RisingEdge(clk)
 
