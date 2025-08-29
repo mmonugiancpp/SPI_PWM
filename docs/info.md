@@ -9,7 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+PWM is a technique used to output analog results with digital means.  
+A digital control is used to generate digital signals that can have variable duty cycle.  
+The goal is to adjust the output pulse width in order to regulate the average output voltage.  
+
+---
 
 ## How to test
 
